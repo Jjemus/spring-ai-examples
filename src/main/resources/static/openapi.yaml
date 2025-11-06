@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Recipe Chat API
+  description: API for recipe recommendations, image generation, and chat memory
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /recipe:
+    get:
+      summary: Get a recipe recommendation
+      description: Returns a recipe for a delicious dish in metric units
+      operationId: getRecipe
+      responses:
+        '200':
+          description: A recipe recommendation
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /recipe/stream:
+    get:
+      summary: Stream a recipe recommendation
+      description: Streams a recipe for a delicious dish in metric units
+      operationId: streamRecipe
+      responses:
+        '200':
+          description: A streaming recipe recommendation
+          content:
+            application/stream+json:
+              schema:
+                type: string
+
+  /recipe/weather:
+    get:
+      summary: Get a weather-appropriate recipe
+      description: Returns a recipe suitable for current weather conditions
+      operationId: getWeatherRecipe
+      responses:
+        '200':
+          description: A weather-appropriate recipe recommendation
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /recipe/json:
+    get:
+      summary: Get a recipe in JSON format
+      description: Returns a structured recipe with name, description, ingredients and instructions
+      operationId: getRecipeJson
+      responses:
+        '200':
+          description: A structured recipe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  instructions:
+                    type: string
+
+  /recipe/image/describe:
+    get:
+      summary: Describe a recipe from an image
+      description: Analyzes a pre-configured image and describes what dish it is
+      operationId: describeRecipeImage
+      responses:
+        '200':
+          description: Description of the dish in the image
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /recipe/image/create:
+    get:
+      summary: Generate a recipe image
+      description: Creates an image of a delicious pasta dish
+      operationId: createRecipeImage
+      responses:
+        '200':
+          description: Generated image of a pasta dish
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+
+  /recipe/last:
+    get:
+      summary: Get the last requested recipe
+      description: Returns information about the last recipe that was requested using chat memory
+      operationId: getLastRecipe
+      responses:
+        '200':
+          description: Information about the last requested recipe
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    Recipe:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the recipe
+        description:
+          type: string
+          description: A brief description of the dish
+        ingredients:
+          type: array
+          items:
+            type: string
+          description: List of ingredients needed for the recipe
+        instructions:
+          type: string
+          description: Step-by-step cooking instructions

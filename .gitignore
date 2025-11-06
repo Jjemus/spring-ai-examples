@@ -1,0 +1,62 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/src/main/resources/application-local.properties
+
+# Log files
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# API Keys (important for Spring AI)
+*.key
+secrets/
+
+# Database files (if using embedded DB)
+*.db
+*.h2.db
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# IDE specific (additional)
+*.swp
+*.swo
+*~
+
+# Spring Boot
+spring-shell.log

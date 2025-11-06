@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+    mariadb:
+        container_name: spring_ai_mariadb
+        image: mariadb:11.8
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_USER: myuser
+            MYSQL_PASSWORD: mypassword
+            MYSQL_ROOT_PASSWORD: mypassword
+            MYSQL_DATABASE: spring-ai
