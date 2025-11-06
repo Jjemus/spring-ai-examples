@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.evaluation.FactCheckingEvaluator;
 import org.springframework.ai.document.Document;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fact-check")
+@Tag(name= "Testing & Evaluation")
 public class TestingFactCheckController {
     private final ChatClient chatClient;
     private final ChatClient.Builder chatClientBuilder;
@@ -25,6 +28,7 @@ public class TestingFactCheckController {
     }
 
     @GetMapping
+    @Operation(summary = "Get a recipe along with its fact-check evaluation")
     public FactCheckEvaluation recipeFactCheck(
             @RequestParam(defaultValue = "What is the main ingredient in carbonara?") String question) {
 

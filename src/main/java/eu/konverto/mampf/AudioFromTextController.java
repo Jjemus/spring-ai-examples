@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/text-audio")
+@Tag(name= "Audio")
 public class AudioFromTextController {
     private final ChatModel chatModel;
 
@@ -27,6 +30,7 @@ public class AudioFromTextController {
     }
 
     @GetMapping
+    @Operation(summary = "Get audio response from text input")
     public ResponseEntity<String> getAudio(@RequestParam(name = "q", defaultValue = "What is pasta carbonara") String query) {
         var userMessage = new UserMessage(query);
 

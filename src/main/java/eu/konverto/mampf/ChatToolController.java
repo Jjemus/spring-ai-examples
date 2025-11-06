@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tool-chat")
+@Tag(name= "Text")
 public class ChatToolController {
     private final ChatClient chatClient;
 
@@ -18,6 +21,7 @@ public class ChatToolController {
     }
 
     @GetMapping
+    @Operation(summary = "Get a chat response with tools for weather and user preferences")
     public String recipeWeather() {
         return chatClient.prompt("Give me a recipe that is suitable for current weather ")
                 .tools(new WeatherTools())

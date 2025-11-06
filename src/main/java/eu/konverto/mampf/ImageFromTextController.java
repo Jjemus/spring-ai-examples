@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImageOptionsBuilder;
 import org.springframework.ai.image.ImagePrompt;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/text-image")
+@Tag(name= "Images")
 public class ImageFromTextController {
     private final ImageModel imageModel; // show8: image model
 
@@ -18,6 +21,7 @@ public class ImageFromTextController {
     }
 
     @GetMapping
+    @Operation(summary = "Generate an image from a text prompt")
     public String recipeImage() {
         ImageResponse response =
                 imageModel.call(

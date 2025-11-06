@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.rag.Query;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vector-topk")
+@Tag(name= "Data Enrichment")
 public class VectorTopKController {
     private final VectorStore vectorStore;
     private final ChatClient chatClient;
@@ -24,6 +27,7 @@ public class VectorTopKController {
     }
 
     @GetMapping
+    @Operation(summary = "Get top K vector documents and add information to query")
     public String getTopK(@RequestParam(name = "q", defaultValue = "recipe for carbonara pasta") String userQuery) {
         VectorStoreDocumentRetriever retriever = VectorStoreDocumentRetriever.builder()
                 .vectorStore(vectorStore)

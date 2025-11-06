@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemoryRepository;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/memory-chat")
+@Tag(name= "Text")
 public class ChatMemoryController {
     private final ChatClient chatClient;
     private final PromptChatMemoryAdvisor promptChatMemoryAdvisor;
@@ -25,6 +28,7 @@ public class ChatMemoryController {
     }
 
     @GetMapping
+    @Operation(summary = "Get a chat response with memory for the last recipe")
     public String recipeLast() {
         String previousResponse = chatClient
                 .prompt()

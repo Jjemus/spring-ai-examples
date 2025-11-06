@@ -9,7 +9,8 @@ paths:
   /vector-topk:
     get:
       tags:
-      - vector-top-k-controller
+      - Data Enrichment
+      summary: Get top K vector documents and add information to query
       operationId: getTopK
       parameters:
       - name: q
@@ -28,7 +29,8 @@ paths:
   /vector-query:
     get:
       tags:
-      - vector-query-controller
+      - Data Enrichment
+      summary: Get a RAG chat response with vector documents
       operationId: ragQuery
       parameters:
       - name: q
@@ -47,7 +49,8 @@ paths:
   /vector-pdf:
     get:
       tags:
-      - vector-pdf-controller
+      - Data Enrichment
+      summary: Process PDF and add to vector store
       operationId: processPDF
       responses:
         "200":
@@ -59,8 +62,29 @@ paths:
   /vector-init:
     get:
       tags:
-      - vector-init-controller
+      - Data Enrichment
+      summary: Initialize vector store with sample documents
       operationId: initVector
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /vector-embed:
+    get:
+      tags:
+      - Data Enrichment
+      summary: Embed text to vector
+      operationId: embedText
+      parameters:
+      - name: text
+        in: query
+        required: false
+        schema:
+          type: string
+          default: Pasta carbonara
       responses:
         "200":
           description: OK
@@ -71,7 +95,8 @@ paths:
   /tool-chat:
     get:
       tags:
-      - tool-chat-controller
+      - Text
+      summary: Get a chat response with tools for weather and user preferences
       operationId: recipeWeather
       responses:
         "200":
@@ -83,7 +108,8 @@ paths:
   /text-image:
     get:
       tags:
-      - text-image-controller
+      - Images
+      summary: Generate an image from a text prompt
       operationId: recipeImage
       responses:
         "200":
@@ -95,7 +121,8 @@ paths:
   /text-audio:
     get:
       tags:
-      - text-audio-controller
+      - Audio
+      summary: Get audio response from text input
       operationId: getAudio
       parameters:
       - name: q
@@ -114,7 +141,8 @@ paths:
   /system-chat:
     get:
       tags:
-      - system-chat-controller
+      - Text
+      summary: Get a chat response with system instructions
       operationId: recipe
       responses:
         "200":
@@ -126,7 +154,8 @@ paths:
   /structure-chat:
     get:
       tags:
-      - structure-chat-controller
+      - Text
+      summary: Get a chat response with a structured recipe
       operationId: recipeJson
       responses:
         "200":
@@ -138,7 +167,8 @@ paths:
   /streaming-chat:
     get:
       tags:
-      - streaming-chat-controller
+      - Text
+      summary: Get a streaming chat response with a recipe
       operationId: recipeStream
       responses:
         "200":
@@ -152,7 +182,8 @@ paths:
   /memory-chat:
     get:
       tags:
-      - memory-chat-controller
+      - Text
+      summary: Get a chat response with memory for the last recipe
       operationId: recipeLast
       responses:
         "200":
@@ -164,7 +195,8 @@ paths:
   /image-text:
     get:
       tags:
-      - image-text-controller
+      - Images
+      summary: Describe a dish from an image
       operationId: recipeImageDescribe
       responses:
         "200":
@@ -176,7 +208,8 @@ paths:
   /fact-check:
     get:
       tags:
-      - fact-check-controller
+      - Testing & Evaluation
+      summary: Get a recipe along with its fact-check evaluation
       operationId: recipeFactCheck
       parameters:
       - name: question
@@ -195,7 +228,8 @@ paths:
   /evaluation:
     get:
       tags:
-      - evaluation-controller
+      - Testing & Evaluation
+      summary: Get a recipe along with its relevancy evaluation
       operationId: recipeWithEvaluation
       parameters:
       - name: dish
@@ -211,28 +245,11 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/RecipeEvaluation"
-  /embed:
+  /blocking-chat:
     get:
       tags:
-      - embed-controller
-      operationId: embedText
-      parameters:
-      - name: text
-        in: query
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /blocking-chat/recipe:
-    get:
-      tags:
-      - blocking-chat-controller
+      - Text
+      summary: Get a blocking chat response with a recipe
       operationId: recipe_1
       responses:
         "200":
@@ -244,7 +261,8 @@ paths:
   /audio-text:
     get:
       tags:
-      - audio-text-controller
+      - Audio
+      summary: Transcribe audio to text using GPT-4o Audio
       operationId: getAudioText
       responses:
         "200":

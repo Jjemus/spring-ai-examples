@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/image-text")
+@Tag(name= "Images")
 public class ImageToTextController {
     private final ChatClient chatClient;
 
@@ -21,6 +24,7 @@ public class ImageToTextController {
     }
 
     @GetMapping
+    @Operation(summary = "Describe a dish from an image")
     public String recipeImageDescribe() {
         return chatClient
                 .prompt()

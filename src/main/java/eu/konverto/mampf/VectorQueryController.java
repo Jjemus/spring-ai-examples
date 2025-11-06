@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.api.Advisor;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/vector-query")
+@Tag(name= "Data Enrichment")
 public class VectorQueryController {
     private final ChatClient chatClient;
 
@@ -29,6 +32,7 @@ public class VectorQueryController {
     }
 
     @GetMapping
+    @Operation(summary = "Get a RAG chat response with vector documents")
     public String ragQuery(@RequestParam(name = "q", defaultValue = "what is carbonara") String userQuery) {
         return chatClient.prompt()
                 .user(userQuery)

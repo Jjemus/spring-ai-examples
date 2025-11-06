@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vector-pdf")
+@Tag(name= "Data Enrichment")
 public class VectorPdfController {
     private final VectorStore vectorStore;
 
@@ -20,6 +23,7 @@ public class VectorPdfController {
     }
 
     @GetMapping
+    @Operation(summary = "Process PDF and add to vector store")
     public String processPDF() {
         var reader = new PagePdfDocumentReader("sample.pdf");
 

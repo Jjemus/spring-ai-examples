@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/audio-text")
+@Tag(name= "Audio")
 public class AudioToTextController {
     private final ChatModel chatModel;
 
@@ -25,6 +28,7 @@ public class AudioToTextController {
     }
 
     @GetMapping
+    @Operation(summary = "Transcribe audio to text using GPT-4o Audio")
     public String getAudioText() {
         var audioResource = new ClassPathResource("sample.mp3");
 

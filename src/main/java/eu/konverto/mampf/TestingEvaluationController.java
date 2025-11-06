@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.evaluation.RelevancyEvaluator;
 import org.springframework.ai.evaluation.EvaluationRequest;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/evaluation")
+@Tag(name= "Testing & Evaluation")
 public class TestingEvaluationController {
     private final ChatClient chatClient;
     private final ChatClient.Builder chatClientBuilder;
@@ -24,6 +27,7 @@ public class TestingEvaluationController {
     }
 
     @GetMapping
+    @Operation(summary = "Get a recipe along with its relevancy evaluation")
     public RecipeEvaluation recipeWithEvaluation(@RequestParam(defaultValue = "a delicious dish") String dish) {
         String userQuery = "Give me a recipe for " + dish;
 

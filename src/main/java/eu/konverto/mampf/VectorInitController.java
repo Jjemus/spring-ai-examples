@@ -1,5 +1,7 @@
 package eu.konverto.mampf;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/vector-init")
+@Tag(name= "Data Enrichment")
 public class VectorInitController {
     private final VectorStore vectorStore;
 
@@ -19,6 +22,7 @@ public class VectorInitController {
     }
 
     @GetMapping
+    @Operation(summary = "Initialize vector store with sample documents")
     public String initVector() {
         List<Document> documents = List.of(
                 new Document("Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!", Map.of("meta1", "meta1")),
