@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/memory-chat")
-public class MemoryChatController {
+public class ChatMemoryController {
     private final ChatClient chatClient;
     private final PromptChatMemoryAdvisor promptChatMemoryAdvisor;
 
-    public MemoryChatController(ChatClient.Builder builder) {
+    public ChatMemoryController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
 
         var memory =

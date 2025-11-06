@@ -8,10 +8,10 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/streaming-chat")
-public class StreamingChatController {
+public class ChatStreamingController {
     private final ChatClient chatClient;
 
-    public StreamingChatController(ChatClient.Builder builder) {
+    public ChatStreamingController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 

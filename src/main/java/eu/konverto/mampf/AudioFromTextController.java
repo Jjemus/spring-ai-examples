@@ -19,10 +19,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/text-audio")
-public class TextAudioController {
+public class AudioFromTextController {
     private final ChatModel chatModel;
 
-    public TextAudioController(ChatModel chatModel) {
+    public AudioFromTextController(ChatModel chatModel) {
         this.chatModel = chatModel;
     }
 

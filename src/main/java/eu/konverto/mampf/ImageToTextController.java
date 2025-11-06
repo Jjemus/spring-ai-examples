@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/image-text")
-public class ImageTextController {
+public class ImageToTextController {
     private final ChatClient chatClient;
 
     @Value("classpath:/test.jpg")
     private Resource image;
 
-    public ImageTextController(ChatClient.Builder builder) {
+    public ImageToTextController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 

@@ -1,0 +1,294 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /vector-topk:
+    get:
+      tags:
+      - vector-top-k-controller
+      operationId: getTopK
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          default: recipe for carbonara pasta
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /vector-query:
+    get:
+      tags:
+      - vector-query-controller
+      operationId: ragQuery
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          default: what is carbonara
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /vector-pdf:
+    get:
+      tags:
+      - vector-pdf-controller
+      operationId: processPDF
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /vector-init:
+    get:
+      tags:
+      - vector-init-controller
+      operationId: initVector
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /tool-chat:
+    get:
+      tags:
+      - tool-chat-controller
+      operationId: recipeWeather
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /text-image:
+    get:
+      tags:
+      - text-image-controller
+      operationId: recipeImage
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /text-audio:
+    get:
+      tags:
+      - text-audio-controller
+      operationId: getAudio
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          default: What is pasta carbonara
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /system-chat:
+    get:
+      tags:
+      - system-chat-controller
+      operationId: recipe
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /structure-chat:
+    get:
+      tags:
+      - structure-chat-controller
+      operationId: recipeJson
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Recipe"
+  /streaming-chat:
+    get:
+      tags:
+      - streaming-chat-controller
+      operationId: recipeStream
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /memory-chat:
+    get:
+      tags:
+      - memory-chat-controller
+      operationId: recipeLast
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /image-text:
+    get:
+      tags:
+      - image-text-controller
+      operationId: recipeImageDescribe
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /fact-check:
+    get:
+      tags:
+      - fact-check-controller
+      operationId: recipeFactCheck
+      parameters:
+      - name: question
+        in: query
+        required: false
+        schema:
+          type: string
+          default: What is the main ingredient in carbonara?
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/FactCheckEvaluation"
+  /evaluation:
+    get:
+      tags:
+      - evaluation-controller
+      operationId: recipeWithEvaluation
+      parameters:
+      - name: dish
+        in: query
+        required: false
+        schema:
+          type: string
+          default: a delicious dish
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RecipeEvaluation"
+  /embed:
+    get:
+      tags:
+      - embed-controller
+      operationId: embedText
+      parameters:
+      - name: text
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /blocking-chat/recipe:
+    get:
+      tags:
+      - blocking-chat-controller
+      operationId: recipe_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /audio-text:
+    get:
+      tags:
+      - audio-text-controller
+      operationId: getAudioText
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    Recipe:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        instructions:
+          type: string
+    FactCheckEvaluation:
+      type: object
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+        factualAccuracyScore:
+          type: number
+          format: double
+        isFactuallyCorrect:
+          type: boolean
+    RecipeEvaluation:
+      type: object
+      properties:
+        dishRequested:
+          type: string
+        recipe:
+          type: string
+        relevancyScore:
+          type: number
+          format: double
+        isRelevant:
+          type: boolean

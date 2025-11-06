@@ -14,11 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/evaluation")
-public class EvaluationController {
+public class TestingEvaluationController {
     private final ChatClient chatClient;
     private final ChatClient.Builder chatClientBuilder;
 
-    public EvaluationController(ChatClient.Builder chatClientBuilder) {
+    public TestingEvaluationController(ChatClient.Builder chatClientBuilder) {
         this.chatClientBuilder = chatClientBuilder;
         this.chatClient = chatClientBuilder.build();
     }

@@ -15,11 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fact-check")
-public class FactCheckController {
+public class TestingFactCheckController {
     private final ChatClient chatClient;
     private final ChatClient.Builder chatClientBuilder;
 
-    public FactCheckController(ChatClient.Builder chatClientBuilder) {
+    public TestingFactCheckController(ChatClient.Builder chatClientBuilder) {
         this.chatClientBuilder = chatClientBuilder;
         this.chatClient = chatClientBuilder.build();
     }

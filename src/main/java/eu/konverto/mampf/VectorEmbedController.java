@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/embed")
-public class EmbedController {
+public class VectorEmbedController {
     private final EmbeddingModel embeddingModel;
 
-    public EmbedController(EmbeddingModel embeddingModel) {
+    public VectorEmbedController(EmbeddingModel embeddingModel) {
         this.embeddingModel = embeddingModel;
     }
 

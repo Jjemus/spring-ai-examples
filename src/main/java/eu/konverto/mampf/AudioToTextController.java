@@ -17,10 +17,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/audio-text")
-public class AudioTextController {
+public class AudioToTextController {
     private final ChatModel chatModel;
 
-    public AudioTextController(ChatModel chatModel) {
+    public AudioToTextController(ChatModel chatModel) {
         this.chatModel = chatModel;
     }
 

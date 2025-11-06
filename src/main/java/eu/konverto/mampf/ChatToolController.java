@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tool-chat")
-public class ToolChatController {
+public class ChatToolController {
     private final ChatClient chatClient;
 
-    public ToolChatController(ChatClient.Builder builder) {
+    public ChatToolController(ChatClient.Builder builder) {
         this.chatClient = builder
                 .defaultTools(new PreferenceTool())
                 .build();

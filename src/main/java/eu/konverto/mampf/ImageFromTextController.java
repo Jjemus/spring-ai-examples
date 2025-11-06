@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/text-image")
-public class TextImageController {
+public class ImageFromTextController {
     private final ImageModel imageModel; // show8: image model
 
-    public TextImageController(ImageModel imageModel) {
+    public ImageFromTextController(ImageModel imageModel) {
         this.imageModel = imageModel; // show8: image model
     }
 

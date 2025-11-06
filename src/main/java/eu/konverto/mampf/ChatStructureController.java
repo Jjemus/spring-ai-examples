@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/structure-chat")
-public class StructureChatController {
+public class ChatStructureController {
     private final ChatClient chatClient;
 
-    public StructureChatController(ChatClient.Builder builder) {
+    public ChatStructureController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 

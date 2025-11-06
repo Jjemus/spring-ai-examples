@@ -6,17 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/system-chat")
-public class SystemChatController {
+@RequestMapping("/blocking-chat")
+public class ChatBlockingController {
     private final ChatClient chatClient;
 
-    public SystemChatController(ChatClient.Builder builder) {
-        this.chatClient = builder
-                .defaultSystem("You are a helpful assistant that provides recipes in metric units.")
-                .build();
+    public ChatBlockingController(ChatClient.Builder builder) {
+        this.chatClient = builder.build();
     }
 
-    @GetMapping
+    @GetMapping("recipe")
     public String recipe() {
         return chatClient
                 .prompt()
