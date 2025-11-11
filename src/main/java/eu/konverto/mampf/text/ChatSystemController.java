@@ -1,4 +1,4 @@
-package eu.konverto.mampf;
+package eu.konverto.mampf.text;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -7,26 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/structure-chat")
+@RequestMapping("/system-chat")
 @Tag(name= "Text")
-public class ChatStructureController {
+public class ChatSystemController {
     private final ChatClient chatClient;
 
-    public ChatStructureController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public ChatSystemController(ChatClient.Builder builder) {
+        this.chatClient = builder
+                .defaultSystem("You are a helpful assistant that provides recipes in metric units.")
+                .build();
     }
 
-    private record Recipe(String name, String description, List<String> ingredients, String instructions) {}
-
     @GetMapping
-    @Operation(summary = "Get a chat response with a structured recipe")
-    public Recipe recipeJson() {
-        return chatClient.prompt()
+    @Operation(summary = "Get a chat response with system instructions")
+    public String recipe() {
+        return chatClient
+                .prompt()
                 .user("Give me a recipe for a delicious dish")
                 .call()
-                .entity(Recipe.class);
+                .content();
     }
 }

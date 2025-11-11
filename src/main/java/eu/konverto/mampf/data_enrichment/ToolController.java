@@ -1,4 +1,4 @@
-package eu.konverto.mampf;
+package eu.konverto.mampf.data_enrichment;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/tool-chat")
 @Tag(name= "Text")
-public class ChatToolController {
+public class ToolController {
     private final ChatClient chatClient;
 
-    public ChatToolController(ChatClient.Builder builder) {
+    public ToolController(ChatClient.Builder builder) {
         this.chatClient = builder
                 .defaultTools(new PreferenceTool())
                 .build();

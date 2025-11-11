@@ -1,4 +1,4 @@
-package eu.konverto.mampf;
+package eu.konverto.mampf.data_enrichment;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package eu.konverto.mampf;
+package eu.konverto.mampf.text;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,19 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/system-chat")
+@RequestMapping("/blocking-chat")
 @Tag(name= "Text")
-public class ChatSystemController {
+public class ChatBlockingController {
     private final ChatClient chatClient;
 
-    public ChatSystemController(ChatClient.Builder builder) {
-        this.chatClient = builder
-                .defaultSystem("You are a helpful assistant that provides recipes in metric units.")
-                .build();
+    public ChatBlockingController(ChatClient.Builder builder) {
+        this.chatClient = builder.build();
     }
 
     @GetMapping
-    @Operation(summary = "Get a chat response with system instructions")
+    @Operation(summary = "Get a blocking chat response with a recipe")
     public String recipe() {
         return chatClient
                 .prompt()
