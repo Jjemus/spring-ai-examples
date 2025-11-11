@@ -17,7 +17,7 @@ public class ImageFromTextController {
     private final ImageModel imageModel; // show8: image model
 
     public ImageFromTextController(ImageModel imageModel) {
-        this.imageModel = imageModel; // show8: image model
+        this.imageModel = imageModel;
     }
 
     @GetMapping

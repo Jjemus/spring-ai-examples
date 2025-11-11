@@ -30,7 +30,7 @@ public class TestingFactCheckController {
     @GetMapping
     @Operation(summary = "Get a recipe along with its fact-check evaluation")
     public FactCheckEvaluation recipeFactCheck(
-            @RequestParam(defaultValue = "What is the main ingredient in carbonara?") String question) {
+            @RequestParam(defaultValue = "What is pasta carbonara?") String question) {
 
         String aiResponse = chatClient
                 .prompt()
@@ -57,7 +57,6 @@ public class TestingFactCheckController {
         return new FactCheckEvaluation(
                 question,
                 aiResponse,
-                evaluationResponse.getScore(),
                 evaluationResponse.isPass()
         );
     }
@@ -65,7 +64,6 @@ public class TestingFactCheckController {
     public record FactCheckEvaluation(
             String question,
             String answer,
-            double factualAccuracyScore,
             boolean isFactuallyCorrect
     ) {}
 }
